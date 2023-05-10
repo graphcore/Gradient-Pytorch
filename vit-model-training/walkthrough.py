@@ -31,7 +31,7 @@ Requirements:
 
 - Python packages installed with `python -m pip install -r requirements.txt`
 """
-# %pip install -q -r requirements.txt
+# %pip install -r requirements.txt
 # sst_ignore_md
 # sst_ignore_code_only
 

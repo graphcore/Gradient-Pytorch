@@ -46,7 +46,7 @@ Requirements:
 """
 # sst_ignore_md
 # sst_ignore_code_only
-# %pip install -q -r requirements.txt
+# %pip install -r requirements.txt
 """
 ### Running on Paperspace
 
