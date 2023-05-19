@@ -20,6 +20,7 @@ yolov4-object-detection:
         - path: vision/yolo_v4/pytorch/.ci/
         - path: vision/yolo_v4/pytorch/conftest.py
         - path: vision/yolo_v4/pytorch/tests/
+        - path: vision/yolo_v4/pytorch/README.md
     target:
       renames: {}
       repository:
