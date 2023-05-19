@@ -16,6 +16,10 @@ yolov4-object-detection:
         origin: examples-internal/
         ref: yolo-notebook
         prefix: vision/yolo_v4/pytorch
+      excludes:
+        - path: vision/yolo_v4/pytorch/.ci/
+        - path: vision/yolo_v4/pytorch/conftest.py
+        - path: vision/yolo_v4/pytorch/tests/
     target:
       renames: {}
       repository:
