@@ -1,0 +1,23 @@
+_examples_internal_repository: &_examples_internal_repository
+  origin: examples-internal/
+  ref: null
+
+_current_repo_in_github_actions: &_current_repo_in_github_actions
+    origin: notebooks/
+    ref: null
+
+yolov4-object-detection:
+    source:
+      paths:
+      - expression: '*'
+        path: vision/yolo_v4/pytorch
+        recursive: true
+      repository:
+        origin: examples-internal/
+        ref: yolo-notebook
+        prefix: vision/yolo_v4/pytorch
+    target:
+      renames: {}
+      repository:
+        <<: *_current_repo_in_github_actions
+        prefix: object-detection-with-yolo
