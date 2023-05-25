@@ -98,6 +98,14 @@ vit-model-training:
     timeout: 10000
   requirements_file: requirements.txt
 
+object-detection-with-yolo:
+  location: ../object-detection-with-yolo
+  generated: true
+  notebook:
+    file: notebook_yolo.ipynb
+    timeout: 3600
+
+
 # Useful references
 useful-managing-ipu-resources:
   location: ../useful-tips
