@@ -5,7 +5,7 @@ numpy
 pycocotools==2.0.4
 pytest
 pytest-pythonpath==0.7.4
-requests==2.27.1
+requests==2.31.0
 ruamel.yaml==0.17.21
 scipy==1.5.4
 torchvision==0.14.1+cpu; python_version > '3.6'
