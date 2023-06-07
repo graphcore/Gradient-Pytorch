@@ -1,5 +1,5 @@
 {
-    "${POPLAR_EXECUTABLE_CACHE_DIR}":["${PUBLIC_DATASETS_DIR}/poplar-executables-pytorch-3-2"],
+    "${POPLAR_EXECUTABLE_CACHE_DIR}":["${PUBLIC_DATASETS_DIR}/poplar-executables-pytorch-3-2/${SDK_VERSION}"],
     "${DATASETS_DIR}/ogbl_wikikg2_custom":["${PUBLIC_DATASETS_DIR}/ogbl_wikikg2_custom"],
     "${DATASETS_DIR}/chest-xray-nihcc-3": ["${PUBLIC_DATASETS_DIR}/chest-xray-nihcc-3"]
 }
