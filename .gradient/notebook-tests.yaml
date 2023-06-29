@@ -10,7 +10,6 @@ Graphcore-Pytorch-README_first:
 #   notebook:
 #     file: finetuning.ipynb
 #     timeout: 15000
-#   requirements_file: requirements.txt
 
 
 # gptj-generative-inference:
@@ -19,7 +18,6 @@ Graphcore-Pytorch-README_first:
 #   notebook:
 #     file: GPTJ-generative-inference.ipynb
 #     timeout: 3600
-#   requirements_file: requirements.txt
 
 tutorial-basics-walkthrough:
   location: ../learning-PyTorch-on-IPU/basics
@@ -27,7 +25,6 @@ tutorial-basics-walkthrough:
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 efficient_data_loading-walkthrough:
@@ -44,7 +41,6 @@ mixed_precision-walkthrough:
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 pipelining-walkthrough:
@@ -53,7 +49,6 @@ pipelining-walkthrough:
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 finetuning-bert:
@@ -62,7 +57,6 @@ finetuning-bert:
   notebook:
     file: Fine-tuning-BERT.ipynb
     timeout: 5400
-  requirements_file: requirements.txt
 
 tgn:
   location: ../temporal-graph-networks
@@ -70,7 +64,6 @@ tgn:
   notebook:
     file: Train_TGN.ipynb
     timeout: 5400
-  requirements_file: requirements.txt
 
 
 distributed-kge:
@@ -79,7 +72,6 @@ distributed-kge:
   notebook:
     file: KgeModelling.ipynb
     timeout: 5400
-  requirements_file: requirements.txt
 
 # Removed pending model work
 # gpt2-textgen:
@@ -96,7 +88,6 @@ vit-model-training:
   notebook:
     file: walkthrough.ipynb
     timeout: 5400
-  requirements_file: requirements.txt
 
 object-detection-with-yolo:
   location: ../object-detection-with-yolo
