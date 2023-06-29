@@ -4,22 +4,22 @@ Graphcore-Pytorch-README_first:
  notebook:
    file: README_first.ipynb
 
-gptj-finetuning:
-  location: ../gptj-text-generation/
-  generated: true
-  notebook:
-    file: finetuning.ipynb
-    timeout: 15000
-  requirements_file: requirements.txt
+# gptj-finetuning:
+#   location: ../gptj-text-generation/
+#   generated: true
+#   notebook:
+#     file: finetuning.ipynb
+#     timeout: 15000
+#   requirements_file: requirements.txt
 
 
-gptj-generative-inference:
-  location: ../gptj-text-generation/
-  generated: true
-  notebook:
-    file: GPTJ-generative-inference.ipynb
-    timeout: 3600
-  requirements_file: requirements.txt
+# gptj-generative-inference:
+#   location: ../gptj-text-generation/
+#   generated: true
+#   notebook:
+#     file: GPTJ-generative-inference.ipynb
+#     timeout: 3600
+#   requirements_file: requirements.txt
 
 tutorial-basics-walkthrough:
   location: ../learning-PyTorch-on-IPU/basics
@@ -61,7 +61,7 @@ finetuning-bert:
   generated: true
   notebook:
     file: Fine-tuning-BERT.ipynb
-    timeout: 10000
+    timeout: 5400
   requirements_file: requirements.txt
 
 tgn:
@@ -69,7 +69,7 @@ tgn:
   generated: true
   notebook:
     file: Train_TGN.ipynb
-    timeout: 10000
+    timeout: 5400
   requirements_file: requirements.txt
 
 
@@ -78,7 +78,7 @@ distributed-kge:
   generated: true
   notebook:
     file: KgeModelling.ipynb
-    timeout: 10000
+    timeout: 5400
   requirements_file: requirements.txt
 
 # Removed pending model work
@@ -95,7 +95,7 @@ vit-model-training:
   generated: true
   notebook:
     file: walkthrough.ipynb
-    timeout: 10000
+    timeout: 5400
   requirements_file: requirements.txt
 
 object-detection-with-yolo:
