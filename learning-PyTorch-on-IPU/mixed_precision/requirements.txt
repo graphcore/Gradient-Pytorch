@@ -1,4 +1,4 @@
 ipywidgets
-torchvision==0.14.1
+torchvision==0.15.2
 tqdm
 examples-utils[common] @ git+https://github.com/graphcore/examples-utils@latest_stable
