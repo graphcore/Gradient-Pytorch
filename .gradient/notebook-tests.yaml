@@ -51,27 +51,27 @@ pipelining-walkthrough:
     timeout: 1200
 
 
-finetuning-bert:
-  location: ../finetuning-bert
-  generated: true
-  notebook:
-    file: Fine-tuning-BERT.ipynb
-    timeout: 5400
+# finetuning-bert:
+#   location: ../finetuning-bert
+#   generated: true
+#   notebook:
+#     file: Fine-tuning-BERT.ipynb
+#     timeout: 5400
 
-tgn:
-  location: ../temporal-graph-networks
-  generated: true
-  notebook:
-    file: Train_TGN.ipynb
-    timeout: 5400
+# tgn:
+#   location: ../temporal-graph-networks
+#   generated: true
+#   notebook:
+#     file: Train_TGN.ipynb
+#     timeout: 5400
 
 
-distributed-kge:
-  location: ../distributed-kge
-  generated: true
-  notebook:
-    file: KgeModelling.ipynb
-    timeout: 5400
+# distributed-kge:
+#   location: ../distributed-kge
+#   generated: true
+#   notebook:
+#     file: KgeModelling.ipynb
+#     timeout: 5400
 
 # Removed pending model work
 # gpt2-textgen:
@@ -82,28 +82,28 @@ distributed-kge:
 #     timeout: 10000
 #   requirements_file: requirements.txt
 
-vit-model-training:
-  location: ../vit-model-training
-  generated: true
-  notebook:
-    file: walkthrough.ipynb
-    timeout: 5400
+# vit-model-training:
+#   location: ../vit-model-training
+#   generated: true
+#   notebook:
+#     file: walkthrough.ipynb
+#     timeout: 5400
 
-object-detection-with-yolo:
-  location: ../object-detection-with-yolo
-  generated: true
-  notebook:
-    file: notebook_yolo.ipynb
-    timeout: 3600
+# object-detection-with-yolo:
+#   location: ../object-detection-with-yolo
+#   generated: true
+#   notebook:
+#     file: notebook_yolo.ipynb
+#     timeout: 3600
 
 
-# Useful references
-useful-managing-ipu-resources:
-  location: ../useful-tips
-  generated: true
-  notebook:
-    file: managing_ipu_resources.ipynb
-    timeout: 1000
+# # Useful references
+# useful-managing-ipu-resources:
+#   location: ../useful-tips
+#   generated: true
+#   notebook:
+#     file: managing_ipu_resources.ipynb
+#     timeout: 1000
 
 # examples_repository_options: &examples_repository_options
 #   repository:
