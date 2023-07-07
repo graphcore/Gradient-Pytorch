@@ -66,6 +66,28 @@ distributed-kge-pytorch:
       <<: *_common_target_repository
       prefix: distributed-kge
 
+# Not ready
+# gpt2-inference:
+#   source:
+#     paths:
+#     - expression: '*'
+#       path: nlp/gpt2/pytorch
+#       recursive: true
+#     excludes:
+#     - expression: '*'
+#       path: nlp/gpt2/pytorch/.ci
+#       recursive: true
+#     repository:
+#       origin: git@github.com:graphcore/examples-internal.git
+#       ref: gpt2_inference_notebook
+#       prefix: nlp/gpt2/pytorch
+#   target:
+#     renames: {}
+#     repository:
+#       <<: *_common_target_repository
+#       prefix: gpt2-text-generation
+#
+
 
 pytorch-finetuning-bert:
   source:
