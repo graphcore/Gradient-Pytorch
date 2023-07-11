@@ -18,8 +18,7 @@ gptj:
     - path: nlp/gpt_j/popxl/README.md
     - path: nlp/gpt_j/popxl/.gitignore
     repository:
-      origin: git@github.com:graphcore/examples.git
-      ref: sdk-release-3.3.0
+      <<: *_common_source_repository
       prefix: nlp/gpt_j/popxl
   target:
     renames: {}
