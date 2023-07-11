@@ -2,7 +2,7 @@
 Copyright (c) 2022 Graphcore Ltd. All rights reserved.
 """
 """
-# Training a Hugging Face model on the IPU using a local dataset
+# Training a Hugging Face Model on the IPU Using a Local Dataset
 
 This PyTorch tutorial will show you how to reuse a Hugging Face model and train it on the IPU using a local dataset.
 Specifically, we will be fine-tuning a Vision Transformer (ViT) model to detect multiple diseases from chest X-rays. As an X-ray image can have multiple diseases we will be training a multi-label classification model.
@@ -15,26 +15,59 @@ In this tutorial, you will learn how to:
 - Use the Graphcore model cards found on the [Graphcore organisation page on Hugging Face](https://huggingface.co/Graphcore) and reuse checkpoints and config files released by Graphcore.
 - Maximise IPU utilisation for your specific machine by overriding runtime parameters in the `IPUconfig` object made available in the model cards.
 
-If this is your first time using IPUs, read the [IPU Programmer's Guide](https://docs.graphcore.ai/projects/ipu-programmers-guide/en/3.1.0/) to learn the basic concepts.
-To run your own PyTorch model on the IPU see the [PyTorch basics tutorial](../learning-PyTorch-on-IPU/basics), or to see all existing Graphcore models available from Hugging Face go to the [Graphcore organisation page](https://huggingface.co/Graphcore).
+If this is your first time using IPUs, read the [IPU Programmer's Guide](https://docs.graphcore.ai/projects/ipu-programmers-guide/en/latest/) to learn the basic concepts.
+To run your own PyTorch model on the IPU see the [PyTorch basics tutorial](../basics), or to see all existing Graphcore models available from Hugging Face go to the [Graphcore organisation page](https://huggingface.co/Graphcore).
 """
 """
 ## How to run this tutorial
 
 ### Getting the dataset
 
-This tutorial uses the NIH Chest X-ray Dataset downloaded from <http://nihcc.app.box.com/v/ChestXray-NIHCC>.
+This tutorial uses the NIH Chest X-ray Dataset downloaded from <http://nihcc.app.box.com/v/ChestXray-NIHCC>. Download the `/images` directory and unpack all images. You can use `bash` to extract the files:
+```for f in images*.tar.gz; do tar xfz "$f"; done```.
+
+Also download the `Data_Entry_2017_v2020.csv` file, which contains the labels. By default the tutorial expects the `/images` folder and `csv` file to be in the folder `chest-xray-nihcc`.
 
 ### Environment
 
 Requirements:
 
+- A Poplar SDK environment enabled (see the [Getting
+ Started](https://docs.graphcore.ai/en/latest/getting-started.html) guide for
+ your IPU system)
 - Python packages installed with `python -m pip install -r requirements.txt`
 """
-# %pip install -r requirements.txt
+# %pip install -q -r requirements.txt
 # sst_ignore_md
 # sst_ignore_code_only
+"""
+To run the Python version of this tutorial:
 
+1. Download and install the Poplar SDK. Run the `enable.sh` scripts for Poplar and PopART as described in the [Getting
+  Started](https://docs.graphcore.ai/en/latest/getting-started.html) guide for your IPU system.
+2. For repeatability we recommend that you create and activate a Python virtual environment. You can do this with:
+   a. create a virtual environment in the directory `venv`: `virtualenv -p python3 venv`;
+   b. activate it: `source venv/bin/activate`.
+3. Install the Python packages that this tutorial needs with `python -m pip install -r requirements.txt`.
+"""
+"""
+To run the Jupyter notebook version of this tutorial:
+
+1. Enable a Poplar SDK environment (see the [Getting
+  Started](https://docs.graphcore.ai/en/latest/getting-started.html) guide for
+  your IPU system)
+2. In the same environment, install the Jupyter notebook server:
+   `python -m pip install jupyter`
+3. Launch a Jupyter Server on a specific port:
+   `jupyter-notebook --no-browser --port <port number>`
+4. Connect via SSH to your remote machine, forwarding your chosen port:
+   `ssh -NL <port number>:localhost:<port number>
+   <your username>@<remote machine>`
+
+For more details about this process, or if you need troubleshooting, see our
+[guide on using IPUs from Jupyter
+notebooks](../../standard_tools/using_jupyter/README.md).
+"""
 """
 ## Graphcore Hugging Face models
 
@@ -68,7 +101,7 @@ import transformers
 import datasets
 
 # The `chest-xray-nihcc` directory is assumed to be in the pwd, but may be overridden by the environment variable `DATASETS_DIR`
-dataset_rootdir = Path(os.environ.get("DATASETS_DIR", ".")) / "chest-xray-nihcc-3"
+dataset_rootdir = Path(os.environ.get("DATASETS_DIR", ".")) / "chest-xray-nihcc"
 
 # sst_hide_output"
 """
@@ -93,7 +126,7 @@ dataset_rootdir = Path(args.dataset_dir)
 """
 ## Preparing the NIH Chest X-ray Dataset
 
-For this tutorial, we are using the NIH Chest X-ray dataset, which contains radiological examinations for the diagnosis of lung diseases.
+For this tutorial, we are using the NIH Chest X-ray Dataset, which contains radiological examinations for the diagnosis of lung diseases.
 The examinations consist of square, grayscale, X-ray images of 224 pixels with corresponding metadata: Finding Labels, Follow-up #,Patient ID, Patient Age, Patient Gender, View Position, OriginalImage[Width Height] and OriginalImagePixelSpacing[x y].
 
 We defined the locations of the downloaded images and the file with the labels to be downloaded in [Getting the dataset](#getting-the-dataset).
@@ -119,9 +152,7 @@ data = pd.read_csv(label_file)
 # Converts the format of each label in the dataframe from "LabelA|LabelB|LabelC"
 # into ["LabelA", "LabelB", "LabelC"], concatenates the
 # lists together and removes duplicate labels
-unique_labels = np.unique(
-    data["Finding Labels"].str.split("|").aggregate(np.concatenate)
-).tolist()
+unique_labels = np.unique(data["Finding Labels"].str.split("|").aggregate(np.concatenate)).tolist()
 
 print(f"Dataset contains the following labels:\n{unique_labels}")
 """
@@ -144,9 +175,9 @@ We write the image file names and their associated labels to the `metadata.jsonl
 """
 metadata_file = images_dir / "metadata.jsonl"
 if not metadata_file.is_file():
-    data[["Image Index", "labels"]].rename(
-        columns={"Image Index": "file_name"}
-    ).to_json(images_dir / "metadata.jsonl", orient="records", lines=True)
+    data[["Image Index", "labels"]].rename(columns={"Image Index": "file_name"}).to_json(
+        images_dir / "metadata.jsonl", orient="records", lines=True
+    )
 """
 ### Create the dataset
 
@@ -179,9 +210,7 @@ In Hugging Face, the original dataset information is provided in a config file l
 For this model, the X-ray images are resized to the correct resolution (224x224), converted from grayscale to RGB, and normalized across the RGB channels with a mean (0.5, 0.5, 0.5) and a standard deviation (0.5, 0.5, 0.5).
 """
 
-feature_extractor = transformers.AutoFeatureExtractor.from_pretrained(
-    model_name_or_path
-)
+feature_extractor = transformers.AutoFeatureExtractor.from_pretrained(model_name_or_path)
 
 
 class XRayTransform:
@@ -195,17 +224,13 @@ class XRayTransform:
                 transforms.Lambda(lambda pil_img: pil_img.convert("RGB")),
                 transforms.Resize(feature_extractor.size),
                 transforms.ToTensor(),
-                transforms.Normalize(
-                    mean=feature_extractor.image_mean, std=feature_extractor.image_std
-                ),
+                transforms.Normalize(mean=feature_extractor.image_mean, std=feature_extractor.image_std),
                 transforms.ConvertImageDtype(dtype=torch.float16),
             ]
         )
 
     def __call__(self, example_batch):
-        example_batch["pixel_values"] = [
-            self.transforms(pil_img) for pil_img in example_batch["image"]
-        ]
+        example_batch["pixel_values"] = [self.transforms(pil_img) for pil_img in example_batch["image"]]
         return example_batch
 
 
@@ -226,6 +251,7 @@ def batch_sampler(examples):
 
 """
 ### Visualising the dataset
+
 To examine the dataset we display the first 10 rows of the metadata.
 """
 print(data.head(10))
@@ -262,9 +288,7 @@ The `IPUTrainer` class takes the same arguments as the Hugging Face model along 
 
 Now we import the ViT model from Hugging Face.
 """
-model = transformers.AutoModelForImageClassification.from_pretrained(
-    model_name_or_path, num_labels=len(unique_labels)
-)
+model = transformers.AutoModelForImageClassification.from_pretrained(model_name_or_path, num_labels=len(unique_labels))
 
 """
 To use this model on the IPU we need to load the IPU configuration, `IPUConfig`, which gives control to all the parameters specific to Graphcore IPUs.
@@ -278,7 +302,7 @@ Let's set our training hyperparameters using `IPUTrainingArguments`.
 This subclasses the Hugging Face `TrainingArguments` class, adding parameters specific to the IPU and its execution characteristics.
 """
 training_args = optimum_graphcore.IPUTrainingArguments(
-    output_dir=".graphcore/vit-model",
+    output_dir="./results",
     overwrite_output_dir=True,
     per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
@@ -309,9 +333,7 @@ def compute_metrics(p):
     preds = np.argmax(p.predictions, axis=1)
 
     pred_scores = softmax(p.predictions.astype("float32"), axis=1)
-    auc = metric_auc.compute(
-        prediction_scores=pred_scores, references=p.label_ids, multi_class="ovo"
-    )["roc_auc"]
+    auc = metric_auc.compute(prediction_scores=pred_scores, references=p.label_ids, multi_class="ovo")["roc_auc"]
     return {"roc_auc": auc}
 
 
@@ -337,9 +359,7 @@ To accelerate training we will load the last checkpoint if it exists.
 """
 last_checkpoint = None
 if os.path.isdir(training_args.output_dir) and not training_args.overwrite_output_dir:
-    last_checkpoint = transformers.trainer_utils.get_last_checkpoint(
-        training_args.output_dir
-    )
+    last_checkpoint = transformers.trainer_utils.get_last_checkpoint(training_args.output_dir)
 """
 Now we are ready to train.
 """
@@ -381,6 +401,7 @@ The learning rate increases through the warm-up of 25% of the training period, b
 """
 """
 ## Run the evaluation
+
 Now that we have trained the model we can evaluate its ability to predict the labels of unseen data using the validation dataset.
 """
 metrics = trainer.evaluate()
@@ -408,6 +429,6 @@ To improve the training of the model, device parameters were loaded and customis
 You are now ready to use Graphcore and Hugging Face models for your own application.
 To see all the Hugging Face models available for the IPU, see the [Graphcore organisation page](https://huggingface.co/Graphcore) and for more information about
 how models are run please consult the [Hugging Face documentation](https://huggingface.co/docs) and the [Graphcore Optimum Library](https://github.com/huggingface/optimum-graphcore).
-For information on how to optimise models for the IPU see the [Memory and Performance Optimisation Guide](https://docs.graphcore.ai/projects/memory-performance-optimisation/).
+For information on how to optimise models for the IPU see the [Memory and Performance Optimisation Guide](https://docs.graphcore.ai/projects/memory-performance-optimisation/en/latest/).
 Graphcore also provides reference implementations of model architectures for many applications in the [Graphcore examples repository](https://github.com/graphcore/examples) and in the [Graphcore Model Garden](https://www.graphcore.ai/resources/model-garden).
 """

@@ -9,12 +9,36 @@ This tutorial covers the basics of model making in PyTorch, using
 a PopTorch model so that it can be run on a Graphcore IPU.
 """
 """
-### Running on Paperspace
+To run the Python version of this tutorial:
 
-The Paperspace environment lets you run this notebook with no set up. To improve your experience we preload datasets and pre-install packages, this can take a few minutes, if you experience errors immediately after starting a session please try restarting the kernel before contacting support.
-If a problem persists or you want to give us feedback on the content of this notebook, please reach out to through our community of developers using our [slack channel](https://www.graphcore.ai/join-community) or raise a [GitHub issue](https://github.com/gradient-ai/Graphcore-Pytorch/issues).
+1. Download and install the Poplar SDK. Run the `enable.sh` scripts for Poplar and PopART as described in the [Getting
+  Started](https://docs.graphcore.ai/en/latest/getting-started.html) guide for your IPU system.
+2. For repeatability we recommend that you create and activate a Python virtual environment. You can do this with:
+   a. create a virtual environment in the directory `venv`: `virtualenv -p python3 venv`;
+   b. activate it: `source venv/bin/activate`.
+3. Install the Python packages that this tutorial needs with `python -m pip install -r requirements.txt`.
+
+sst_ignore_jupyter
 """
-# %pip install -r requirements.txt
+"""
+To run the Jupyter notebook version of this tutorial:
+
+1. Enable a Poplar SDK environment (see the [Getting
+  Started](https://docs.graphcore.ai/en/latest/getting-started.html) guide for
+  your IPU system)
+2. In the same environment, install the Jupyter notebook server:
+   `python -m pip install jupyter`
+3. Launch a Jupyter Server on a specific port:
+   `jupyter-notebook --no-browser --port <port number>`
+4. Connect via SSH to your remote machine, forwarding your chosen port:
+   `ssh -NL <port number>:localhost:<port number>
+   <your username>@<remote machine>`
+
+For more details about this process, or if you need troubleshooting, see our
+[guide on using IPUs from Jupyter
+notebooks](../../standard_tools/using_jupyter/README.md).
+"""
+# %pip install -q -r requirements.txt
 # sst_ignore_md
 # sst_ignore_code_only
 """
@@ -30,7 +54,7 @@ the model across multiple IPUs.
 
 You can wrap individual layers in an IPU helper to designate which IPU they
 should go on. Using your annotations, PopTorch will use
-[PopART](https://docs.graphcore.ai/projects/popart-user-guide) to parallelise
+[PopART](https://docs.graphcore.ai/projects/popart-user-guide/en/latest/) to parallelise
 the model over the given number of IPUs. Additional parallelism
 can be expressed via a replication factor which enables you to
 data-parallelise the model over more IPUs.
@@ -55,7 +79,7 @@ PopTorch has been designed to require only a few manual changes to your models
 in order to run them on the IPU. However, it does have some differences from
 native PyTorch execution and not all PyTorch operations have been
 implemented in the backend yet. You can find the list of supported operations in
-[PyTorch for the IPU: User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/supported_ops.html).
+[PyTorch for the IPU: User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/supported_ops.html).
 
 ![Software stack](static/stack.jpg)
 """
@@ -179,7 +203,7 @@ loading, a sampling strategy, shuffling, etc.
 """
 """
 PopTorch offers an extension of this class with its
-[`poptorch.DataLoader`](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/batching.html#poptorch-dataloader)
+[`poptorch.DataLoader`](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/batching.html#poptorch-dataloader)
 class, specialised for the way the underlying PopART framework handles
 batching of data. We will use this class later in the tutorial, as soon as we
 have a model ready for training.
@@ -253,7 +277,7 @@ parameters such as loss/velocity scaling.
 """
 """
 We will use
-[SGD](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/reference.html#poptorch.optim.SGD)
+[SGD](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/reference.html#poptorch.optim.SGD)
 as it's a very popular algorithm and is appropriate for this classification
 task.
 """
@@ -540,7 +564,7 @@ PyTorch users to use IPUs.
 """
 """
 The list of these options is available in the
-[PopTorch User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/overview.html#options).
+[PopTorch User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/overview.html#options).
 We introduce here four of these options so you get an idea of what they cover.
 """
 """
@@ -584,7 +608,7 @@ still need to make progress on your code. However, the IPU Model doesn't
 fully support replicated graphs and its numerical results can be slightly
 different from what you would get with an actual IPU. You can learn more
 about the IPU Model and its limitations with our
-[Poplar User Guide](https://docs.graphcore.ai/projects/poplar-user-guide/en/3.1.0/poplar_programs.html?highlight=ipu%20model#programming-with-poplar).
+[Poplar User Guide](https://docs.graphcore.ai/projects/poplar-user-guide/en/latest/poplar_programs.html#programming-with-poplar).
 """
 """
 ## How to set the options
