@@ -249,7 +249,7 @@ yolov4-object-detection:
         path: vision/yolo_v4/pytorch
         recursive: true
       repository:
-        origin: examples-internal/
+        <<: *_common_source_repository
         prefix: vision/yolo_v4/pytorch
       excludes:
         - path: vision/yolo_v4/pytorch/.ci/
