@@ -228,19 +228,19 @@ pytorch-efficient-pipelining:
       <<: *_common_target_repository
       prefix: learning-PyTorch-on-IPU/pipelining
 
-managing_ipu_resources:
-  source:
-    paths:
-    - path: notebooks/managing_ipu_resources.ipynb
-    repository:
-      origin: git@github.com:graphcore/optimum-graphcore-fork.git
-      ref: main
-      prefix: notebooks/
-  target:
-    renames: {}
-    repository:
-      <<: *_common_target_repository
-      prefix: useful-tips/
+#managing_ipu_resources:
+#  source:
+#    paths:
+#    - path: notebooks/managing_ipu_resources.ipynb
+#    repository:
+#      origin: git@github.com:graphcore/optimum-graphcore-fork.git
+#      ref: main
+#      prefix: notebooks/
+#  target:
+#    renames: {}
+#    repository:
+#      <<: *_common_target_repository
+#      prefix: useful-tips/
 
 yolov4-object-detection:
     source:
