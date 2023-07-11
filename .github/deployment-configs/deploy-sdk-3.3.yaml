@@ -250,7 +250,6 @@ yolov4-object-detection:
         recursive: true
       repository:
         origin: examples-internal/
-        ref: yolo-notebook
         prefix: vision/yolo_v4/pytorch
       excludes:
         - path: vision/yolo_v4/pytorch/.ci/
