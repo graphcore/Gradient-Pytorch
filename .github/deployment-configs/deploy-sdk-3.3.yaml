@@ -260,5 +260,5 @@ yolov4-object-detection:
     target:
       renames: {}
       repository:
-        <<: *_current_repo_in_github_actions
+        <<: *&_common_source_repository
         prefix: object-detection-with-yolo
