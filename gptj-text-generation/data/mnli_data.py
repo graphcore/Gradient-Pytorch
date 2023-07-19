@@ -80,7 +80,7 @@ class PadCollate:
 
 def tokenizes_text(tokenizer):
     def func(dataset):
-        tokenized = tokenizer(dataset["text"], return_attention_mask=False)
+        tokenized = tokenizer(dataset["text"], return_attention_mask=False, return_tensors="np")
         return tokenized
 
     return func

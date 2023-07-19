@@ -28,7 +28,7 @@ If you are familiar with PyTorch you may have used
 [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader).
 
 PopTorch provides [its own
-DataLoader](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/batching.html#poptorch-dataloader)
+DataLoader](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/batching.html#poptorch-dataloader)
 which is a wrapper around `torch.utils.data.DataLoader`. It accepts the same
 arguments as PyTorch's DataLoader with some extra features specific to the IPU:
 
@@ -38,7 +38,7 @@ arguments as PyTorch's DataLoader with some extra features specific to the IPU:
 - It enables asynchronous data loading.
 
 See the
-[PopTorch User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/batching.html#poptorch-asynchronousdataaccessor)
+[PopTorch User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/batching.html#poptorch-asynchronousdataaccessor)
 for more information about asynchronous mode.
 """
 """
@@ -50,7 +50,7 @@ for more information about asynchronous mode.
 > ```
 >
 > This is necessary to avoid [issues with asynchronous
-> DataLoader](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/batching.html#poptorch-asynchronousdataaccessor).
+> DataLoader](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/batching.html#poptorch-asynchronousdataaccessor).
 > The asynchronous dataloader calls the spawn method, which creates a new
 > Python interpreter. This interpreter will import the main module of the
 > application. Therefore, we need protection against infinite spawning of new
@@ -227,7 +227,7 @@ The number of batches of data returned to the host depends on the option
 all the output tensors when you use a `inferenceModel()` while you will often
 not need to receive all or any of the output tensors when you use a
 `trainingModel`. See the
-[PopTorch User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/reference.html?highlight=anchormode#poptorch.Options.outputMode)
+[PopTorch User Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/reference.html#poptorch.Options.outputMode)
 for more information about `poptorch.Options.outputMode`.
 
 In this case presented above, we are using a `trainingModel` and
@@ -273,7 +273,7 @@ Then, for one device iteration with pipeline we have multiplied the number of
 samples processed by ***K***.
 
 More information about gradient accumulation can be found in the [PopTorch User
-Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/3.1.0/batching.html#poptorch-options-training-gradientaccumulation).
+Guide](https://docs.graphcore.ai/projects/poptorch-user-guide/en/latest/batching.html#poptorch-options-training-gradientaccumulation).
 """
 """
 ### Replication
@@ -738,5 +738,5 @@ file: `tuto_data_loading.py`. Helpful arguments:
 - Asynchronous mode can provide better throughput performance.
 
 Further information on Host-IPU I/O optimisation can be found in the technical note
-[Memory and Performance Optimisation on the IPU](https://docs.graphcore.ai/projects/memory-performance-optimisation/en/3.1.0/optimising-performance.html#host-ipu-io-optimisation).
+[Memory and Performance Optimisation on the IPU](https://docs.graphcore.ai/projects/memory-performance-optimisation/en/latest/optimising-performance.html#host-ipu-io-optimisation).
 """

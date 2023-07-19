@@ -42,9 +42,7 @@ data = pd.read_csv(label_file)
 # Converts the format of each label in the dataframe from "LabelA|LabelB|LabelC"
 # into ["LabelA", "LabelB", "LabelC"], concatenates the
 # lists together and removes duplicate labels
-unique_labels = np.unique(
-    data["Finding Labels"].str.split("|").aggregate(np.concatenate)
-).tolist()
+unique_labels = np.unique(data["Finding Labels"].str.split("|").aggregate(np.concatenate)).tolist()
 
 print(f"Dataset contains the following labels:\n{unique_labels}")
 
@@ -62,9 +60,9 @@ data["labels"] = data["Finding Labels"].apply(string_to_N_hot)
 
 metadata_file = images_dir / "metadata.jsonl"
 if not metadata_file.is_file():
-    data[["Image Index", "labels"]].rename(
-        columns={"Image Index": "file_name"}
-    ).to_json(images_dir / "metadata.jsonl", orient="records", lines=True)
+    data[["Image Index", "labels"]].rename(columns={"Image Index": "file_name"}).to_json(
+        images_dir / "metadata.jsonl", orient="records", lines=True
+    )
 
 train_val_split = 0.05
 dataset = datasets.load_dataset(
@@ -78,9 +76,7 @@ dataset["validation"] = split["test"]
 
 model_name_or_path = "google/vit-base-patch16-224-in21k"
 
-feature_extractor = transformers.AutoFeatureExtractor.from_pretrained(
-    model_name_or_path
-)
+feature_extractor = transformers.AutoFeatureExtractor.from_pretrained(model_name_or_path)
 
 
 class XRayTransform:
@@ -94,17 +90,13 @@ class XRayTransform:
                 transforms.Lambda(lambda pil_img: pil_img.convert("RGB")),
                 transforms.Resize(feature_extractor.size),
                 transforms.ToTensor(),
-                transforms.Normalize(
-                    mean=feature_extractor.image_mean, std=feature_extractor.image_std
-                ),
+                transforms.Normalize(mean=feature_extractor.image_mean, std=feature_extractor.image_std),
                 transforms.ConvertImageDtype(dtype=torch.float16),
             ]
         )
 
     def __call__(self, example_batch):
-        example_batch["pixel_values"] = [
-            self.transforms(pil_img) for pil_img in example_batch["image"]
-        ]
+        example_batch["pixel_values"] = [self.transforms(pil_img) for pil_img in example_batch["image"]]
         return example_batch
 
 
@@ -140,9 +132,7 @@ for i, data_dict in enumerate(dataset["validation"]):
 
 fig.tight_layout()
 
-model = transformers.AutoModelForImageClassification.from_pretrained(
-    model_name_or_path, num_labels=len(unique_labels)
-)
+model = transformers.AutoModelForImageClassification.from_pretrained(model_name_or_path, num_labels=len(unique_labels))
 
 ipu_config = optimum_graphcore.IPUConfig.from_pretrained("Graphcore/vit-base-ipu")
 
@@ -171,9 +161,7 @@ def compute_metrics(p):
     preds = np.argmax(p.predictions, axis=1)
 
     pred_scores = softmax(p.predictions.astype("float32"), axis=1)
-    auc = metric_auc.compute(
-        prediction_scores=pred_scores, references=p.label_ids, multi_class="ovo"
-    )["roc_auc"]
+    auc = metric_auc.compute(prediction_scores=pred_scores, references=p.label_ids, multi_class="ovo")["roc_auc"]
     return {"roc_auc": auc}
 
 
@@ -190,9 +178,7 @@ trainer = optimum_graphcore.IPUTrainer(
 
 last_checkpoint = None
 if os.path.isdir(training_args.output_dir) and not training_args.overwrite_output_dir:
-    last_checkpoint = transformers.trainer_utils.get_last_checkpoint(
-        training_args.output_dir
-    )
+    last_checkpoint = transformers.trainer_utils.get_last_checkpoint(training_args.output_dir)
 
 # Capture the command line output for plotting loss and learning rate
 output = io.StringIO()
