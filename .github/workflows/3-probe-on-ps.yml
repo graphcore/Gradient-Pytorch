@@ -27,3 +27,6 @@ jobs:
       gradient_ui_email: ${{ secrets.GRADIENT_UI_EMAIL }}
       gradient_ui_password: ${{ secrets.GRADIENT_UI_PASSWORD }}
       gradient_validation_key: ${{ secrets.GRADIENT_VALIDATION_KEY }}
+      slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+      ci_slack_channel_id: ${{ secrets.CI_SLACK_CHANNEL_ID }}
+  
