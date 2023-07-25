@@ -36,8 +36,8 @@ on:
         default: ".github/test_configs/image-config.yaml"
   pull_request:
   schedule:
-    # run at 7:00 PM GMT every night
-    - cron:  '0 19 * * *'
+    # run at 7:00 PM GMT on Friday and Monday
+    - cron:  '0 19 * * FRI,MON'
 
 
 jobs:
