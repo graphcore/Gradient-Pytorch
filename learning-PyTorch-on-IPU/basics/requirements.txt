@@ -5,4 +5,3 @@ scikit-learn
 matplotlib
 tqdm
 Pillow
-graphcore-cloud-tools[logger] @ git+https://github.com/graphcore/graphcore-cloud-tools

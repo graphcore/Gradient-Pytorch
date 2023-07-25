@@ -20,7 +20,7 @@ import transformers
 import datasets
 
 # The `chest-xray-nihcc` directory is assumed to be in the pwd, but may be overridden by the environment variable `DATASETS_DIR`
-dataset_rootdir = Path(os.environ.get("DATASETS_DIR", ".")) / "chest-xray-nihcc-3"
+dataset_rootdir = Path(os.environ.get("DATASETS_DIR", ".")) / "chest-xray-nihcc"
 
 import argparse
 
@@ -137,7 +137,7 @@ model = transformers.AutoModelForImageClassification.from_pretrained(model_name_
 ipu_config = optimum_graphcore.IPUConfig.from_pretrained("Graphcore/vit-base-ipu")
 
 training_args = optimum_graphcore.IPUTrainingArguments(
-    output_dir=".graphcore/vit-model",
+    output_dir="./results",
     overwrite_output_dir=True,
     per_device_train_batch_size=1,
     per_device_eval_batch_size=1,
