@@ -88,7 +88,6 @@ object-detection-with-yolo:
     file: notebook_yolo.ipynb
     timeout: 3600
 
-
 # Useful references
 useful-managing-ipu-resources:
   location: ../useful-tips
