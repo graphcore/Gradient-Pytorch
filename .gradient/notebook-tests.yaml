@@ -4,22 +4,6 @@ Graphcore-Pytorch-README_first:
  notebook:
    file: README_first.ipynb
 
-gptj-finetuning:
-  location: ../gptj-text-generation/
-  generated: true
-  notebook:
-    file: finetuning.ipynb
-    timeout: 15000
-  requirements_file: requirements.txt
-
-
-gptj-generative-inference:
-  location: ../gptj-text-generation/
-  generated: true
-  notebook:
-    file: GPTJ-generative-inference.ipynb
-    timeout: 3600
-  requirements_file: requirements.txt
 
 tutorial-basics-walkthrough:
   location: ../learning-PyTorch-on-IPU/basics
@@ -27,7 +11,6 @@ tutorial-basics-walkthrough:
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 efficient_data_loading-walkthrough:
@@ -44,7 +27,6 @@ mixed_precision-walkthrough:
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 pipelining-walkthrough:
@@ -53,7 +35,6 @@ pipelining-walkthrough:
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 finetuning-bert:
@@ -62,7 +43,6 @@ finetuning-bert:
   notebook:
     file: Fine-tuning-BERT.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
 
 tgn:
   location: ../temporal-graph-networks
@@ -70,7 +50,6 @@ tgn:
   notebook:
     file: Train_TGN.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
 
 
 distributed-kge:
@@ -79,7 +58,13 @@ distributed-kge:
   notebook:
     file: KgeModelling.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
+
+distributed-kge-preprocessing:
+  location: ../distributed-kge
+  generated: true
+  notebook:
+    file: Preprocessing.ipynb
+    timeout: 10000
 
 # Removed pending model work
 # gpt2-textgen:
@@ -88,7 +73,6 @@ distributed-kge:
 #   notebook:
 #     file: gpt2_sentiment_analysis.ipynb
 #     timeout: 10000
-#   requirements_file: requirements.txt
 
 vit-model-training:
   location: ../vit-model-training
@@ -96,7 +80,6 @@ vit-model-training:
   notebook:
     file: walkthrough.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
 
 object-detection-with-yolo:
   location: ../object-detection-with-yolo
@@ -104,7 +87,6 @@ object-detection-with-yolo:
   notebook:
     file: notebook_yolo.ipynb
     timeout: 3600
-
 
 # Useful references
 useful-managing-ipu-resources:

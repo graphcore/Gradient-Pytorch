@@ -1,5 +1,7 @@
+--find-links https://download.pytorch.org/whl/cpu/torch_stable.html
+
 pandas
-torchvision==0.14.1
+torchvision==0.15.2+cpu
 transformers==4.20.1
 tokenizers<0.13
 optimum-graphcore
