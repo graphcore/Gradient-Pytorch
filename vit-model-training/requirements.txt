@@ -8,4 +8,3 @@ optimum-graphcore
 datasets
 matplotlib
 scikit-learn
-graphcore-cloud-tools[logger] @ git+https://github.com/graphcore/graphcore-cloud-tools
