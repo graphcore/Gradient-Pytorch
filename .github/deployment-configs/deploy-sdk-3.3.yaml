@@ -8,24 +8,6 @@ _common_target_repository: &_common_target_repository
     origin: notebooks/
     ref: null
 
-gptj:
-  source:
-    paths:
-    - expression: '*'
-      path: nlp/gpt_j/popxl
-      recursive: true
-    excludes:
-    - path: nlp/gpt_j/popxl/README.md
-    - path: nlp/gpt_j/popxl/.gitignore
-    repository:
-      <<: *_common_source_repository
-      prefix: nlp/gpt_j/popxl
-  target:
-    renames: {}
-    repository:
-      <<: *_common_target_repository
-      prefix: gptj-text-generation
-
 tgn:
   source:
     paths:
