@@ -243,4 +243,4 @@ yolov4-object-detection:
       repository:
         <<: *_common_source_repository
         prefix: object-detection-with-yolo
-        
+
