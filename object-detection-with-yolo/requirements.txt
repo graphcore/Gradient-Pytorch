@@ -1,7 +1,7 @@
 --find-links https://download.pytorch.org/whl/cpu/torch_stable.html
 fvcore==0.1.5.post20210727
-matplotlib==3.3.4
-numpy==1.19.5
+matplotlib
+numpy
 pycocotools==2.0.6
 pytest==6.2.5
 pytest-pythonpath==0.7.4
@@ -15,4 +15,3 @@ wandb==0.12.8
 yacs==0.1.8
 torchinfo==1.5.4
 graphcore-cloud-tools[logger] @ git+https://github.com/graphcore/graphcore-cloud-tools
-
