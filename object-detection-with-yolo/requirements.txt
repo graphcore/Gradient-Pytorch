@@ -14,4 +14,4 @@ protobuf==3.19.4
 wandb==0.12.8
 yacs==0.1.8
 torchinfo==1.5.4
-graphcore-cloud-tools[logger] @ git+https://github.com/graphcore/graphcore-cloud-tools
+graphcore-cloud-tools[logger] @ git+https://github.com/graphcore/graphcore-cloud-tools@v0.2
