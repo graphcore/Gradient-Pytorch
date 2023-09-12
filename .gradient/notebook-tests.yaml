@@ -7,6 +7,8 @@ Graphcore-Pytorch-README_first:
 
 tutorial-basics-walkthrough:
   location: ../learning-PyTorch-on-IPU/basics
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
@@ -15,6 +17,8 @@ tutorial-basics-walkthrough:
 
 efficient_data_loading-walkthrough:
   location: ../learning-PyTorch-on-IPU/efficient_data_loading
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
@@ -23,6 +27,8 @@ efficient_data_loading-walkthrough:
 
 mixed_precision-walkthrough:
   location: ../learning-PyTorch-on-IPU/mixed_precision
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
@@ -31,6 +37,8 @@ mixed_precision-walkthrough:
 
 pipelining-walkthrough:
   location: ../learning-PyTorch-on-IPU/pipelining
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
@@ -39,6 +47,8 @@ pipelining-walkthrough:
 
 finetuning-bert:
   location: ../finetuning-bert
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py"]
   generated: true
   notebook:
     file: Fine-tuning-BERT.ipynb
@@ -46,6 +56,8 @@ finetuning-bert:
 
 tgn:
   location: ../temporal-graph-networks
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py", "*.yml"]
   generated: true
   notebook:
     file: Train_TGN.ipynb
@@ -54,6 +66,8 @@ tgn:
 
 distributed-kge:
   location: ../distributed-kge
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py", "*.cpp", "Makefile"]
   generated: true
   notebook:
     file: KgeModelling.ipynb
@@ -61,6 +75,8 @@ distributed-kge:
 
 distributed-kge-preprocessing:
   location: ../distributed-kge
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py", "*.cpp", "Makefile"]
   generated: true
   notebook:
     file: Preprocessing.ipynb
@@ -76,6 +92,8 @@ distributed-kge-preprocessing:
 
 vit-model-training:
   location: ../vit-model-training
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
@@ -83,6 +101,8 @@ vit-model-training:
 
 object-detection-with-yolo:
   location: ../object-detection-with-yolo
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "**/*.py", "**/*.yml", "**/*.yaml", "**/*.*pp", "**/*.sh", "Makefile"]
   generated: true
   notebook:
     file: notebook_yolo.ipynb
