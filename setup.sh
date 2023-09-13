@@ -57,6 +57,7 @@ export PERSISTENT_CHECKPOINT_DIR="/storage/ipu-checkpoints/"
 # mounted public dataset directory (path in the container)
 # in the Paperspace environment this would be ="/datasets"
 export PUBLIC_DATASETS_DIR="/datasets"
+export S3_DATASETS_DIR="/graphcore-gradient-datasets"
 
 # Logger specific vars
 export TIER_TYPE=$(python .gradient/check_tier.py)
