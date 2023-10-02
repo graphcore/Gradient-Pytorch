@@ -4,34 +4,21 @@ Graphcore-Pytorch-README_first:
  notebook:
    file: README_first.ipynb
 
-gptj-finetuning:
-  location: ../gptj-text-generation/
-  generated: true
-  notebook:
-    file: finetuning.ipynb
-    timeout: 15000
-  requirements_file: requirements.txt
-
-
-gptj-generative-inference:
-  location: ../gptj-text-generation/
-  generated: true
-  notebook:
-    file: GPTJ-generative-inference.ipynb
-    timeout: 3600
-  requirements_file: requirements.txt
 
 tutorial-basics-walkthrough:
   location: ../learning-PyTorch-on-IPU/basics
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 efficient_data_loading-walkthrough:
   location: ../learning-PyTorch-on-IPU/efficient_data_loading
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
@@ -40,46 +27,60 @@ efficient_data_loading-walkthrough:
 
 mixed_precision-walkthrough:
   location: ../learning-PyTorch-on-IPU/mixed_precision
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 pipelining-walkthrough:
   location: ../learning-PyTorch-on-IPU/pipelining
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
     timeout: 1200
-  requirements_file: requirements.txt
 
 
 finetuning-bert:
   location: ../finetuning-bert
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py"]
   generated: true
   notebook:
     file: Fine-tuning-BERT.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
 
 tgn:
   location: ../temporal-graph-networks
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py", "*.yml"]
   generated: true
   notebook:
     file: Train_TGN.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
 
 
 distributed-kge:
   location: ../distributed-kge
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py", "*.cpp", "Makefile"]
   generated: true
   notebook:
     file: KgeModelling.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
+
+distributed-kge-preprocessing:
+  location: ../distributed-kge
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "*.py", "*.cpp", "Makefile"]
+  generated: true
+  notebook:
+    file: Preprocessing.ipynb
+    timeout: 10000
 
 # Removed pending model work
 # gpt2-textgen:
@@ -88,23 +89,24 @@ distributed-kge:
 #   notebook:
 #     file: gpt2_sentiment_analysis.ipynb
 #     timeout: 10000
-#   requirements_file: requirements.txt
 
 vit-model-training:
   location: ../vit-model-training
+  paperspace-automation-ext:
+    watch-files: [requirements.txt]
   generated: true
   notebook:
     file: walkthrough.ipynb
     timeout: 10000
-  requirements_file: requirements.txt
 
 object-detection-with-yolo:
   location: ../object-detection-with-yolo
+  paperspace-automation-ext:
+    watch-files: [requirements.txt, "**/*.py", "**/*.yml", "**/*.yaml", "**/*.*pp", "**/*.sh", "Makefile"]
   generated: true
   notebook:
     file: notebook_yolo.ipynb
     timeout: 3600
-
 
 # Useful references
 useful-managing-ipu-resources:
@@ -113,6 +115,18 @@ useful-managing-ipu-resources:
   notebook:
     file: managing_ipu_resources.ipynb
     timeout: 1000
+
+direct-s3-access:
+  location: ./
+  paperspace-automation-ext:
+    watch-files: [settings.yaml, symlink_config.json]
+  generated: true
+  description: Run the symlinking
+  cmd: python -m graphcore_cloud_tools paperspace symlinks --s3-dataset --disable-legacy-mode --config-file /notebooks/.gradient/symlink_config.json --gradient-settings-file /notebooks/.gradient/settings.yaml --num-concurrent-downloads {conc_down} --max-concurrency {max_concurrency} {cli}
+  parameters:
+    conc_down: "10,20"
+    max_concurrency: "1"
+    cli: "--use-cli,"
 
 # examples_repository_options: &examples_repository_options
 #   repository:
