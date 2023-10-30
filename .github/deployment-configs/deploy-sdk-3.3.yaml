@@ -243,3 +243,20 @@ yolov4-object-detection:
       repository:
         <<: *_common_source_repository
         prefix: object-detection-with-yolo
+
+almost-scaled:
+  source:
+    paths:
+    - expression: '*'
+      path: analysis/almost_scaled_dot_product_attention
+      recursive: true
+    repository:
+      origin: https://github.com/graphcore-research/unit-scaling.git
+      ref: main
+      prefix: analysis/almost_scaled_dot_product_attention
+  target:
+    renames: {}
+    repository:
+      <<: *_current_repo_in_github_actions
+      prefix: almost-scaled-dot-product-attention
+      
