@@ -108,6 +108,15 @@ object-detection-with-yolo:
     file: notebook_yolo.ipynb
     timeout: 3600
 
+almost-scaled:
+  location: ../almost-scaled-dot-product-attention
+  paperspace-automation-ext:
+    watch-files: [demo_transformer.py]
+  generated: true
+  notebook:
+    file: almost_scaled_dot_product_attention.ipynb
+    timeout: 3600
+
 # Useful references
 useful-managing-ipu-resources:
   location: ../useful-tips
