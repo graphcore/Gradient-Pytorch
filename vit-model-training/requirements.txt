@@ -2,7 +2,7 @@
 
 pandas
 torchvision==0.15.2+cpu
-transformers==4.20.1
+transformers==4.36.0
 tokenizers<0.13
 optimum-graphcore
 datasets
