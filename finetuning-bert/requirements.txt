@@ -2,6 +2,6 @@ jupyter
 jedi==0.17.2
 tenacity==8.2.2
 tqdm
-transformers==4.10.2
+transformers==4.36.0
 datasets
 graphcore-cloud-tools[logger] @ git+https://github.com/graphcore/graphcore-cloud-tools@v0.3
