@@ -117,6 +117,13 @@ almost-scaled:
     file: almost_scaled_dot_product_attention.ipynb
     timeout: 3600
 
+clip-semantic:
+  location: ../clip-semantic
+  generated: true
+  notebook:
+    file: clip_for_semantic_search.ipynb
+    timeout: 3600
+
 # Useful references
 useful-managing-ipu-resources:
   location: ../useful-tips
